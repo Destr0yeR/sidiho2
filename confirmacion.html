@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Confirmación de datos</title>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="keywords" content="Flat Login & Register Forms Widget Responsive, Login Form Web Template, Flat Pricing Tables, Flat Drop-Downs, Sign-Up Web Templates, Flat Web Templates, Login Sign-up Responsive Web Template, Smartphone Compatible Web Template, Free Web Designs for Nokia, Samsung, LG, Sony Ericsson, Motorola Web Design" />
+	<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+
+	<link rel="stylesheet" href="css/styleConfirmacion.css" type="text/css" media="all" />
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:600italic,400,300,600,700' rel='stylesheet' type='text/css'>
+	
+</head>
+<body>
+
+	<h1>Verificar Datos del Profesor</h1>
+
+	<div class="containerConfirmacion">
+
+		<div class="login">
+			<form action="#" method="post">
+				<label>Código</label>
+				<input type="text" class="user" placeholder="Código" disabled>
+				<label>Apellido Paterno</label>
+				<input type="text" class="user" placeholder="Apellido Paterno" disabled>
+				<label>Apellido Materno</label>
+				<input type="text" class="user" placeholder="Apellido Materno" disabled>
+				<label>Nombres</label>
+				<input type="text" class="user" placeholder="Nombres" disabled>
+				<label>Clase</label>
+				<div class="user" style="width: 100%;">
+				<select class="select_tipo" disabled>
+					<option>Seleccione el tipo</option>
+				  	<option value="Tiempo Completo">Tiempo Completo</option>
+				  	<option value="Tiempo Parcial">Tiempo Parcial</option>
+				</select>
+				</div>
+				<label>Horas - Ciclo Anterior</label>
+				<input type="number" class="user" placeholder="Horas" disabled min="0" max="25">
+				<label>Direccìon</label>
+				<input type="text" class="user" placeholder="Direcciòn" disabled>
+				<label>Correo</label>
+				<input type="text" class="user" placeholder="Email" disabled>
+				<label>Número Celular</label>
+				<input type="text" class="user" placeholder="Número Celular" disabled>
+
+				<input class="botones" type="submit" value="Continuar">
+				<a class="botones btnmod" href="#modificar" value="Modificar">Modificar</a> 
+				<input class="botones" style="width: 100%" type="submit" value="Salir">
+			</form>
+			<div class="clear"></div>
+		</div>
+	</div>
+
+	<div id="modificar" class="modalDialog">		
+		<div class="login">
+		<a href="#close" title="Close" class="close">X</a>
+			<form action="#" method="post">
+				<h1 style="text-align: center; margin: 10px auto;">Datos a Modificar</h1>
+				<label>Clase</label>
+				<label>Direccìon</label>
+				<input type="text" class="user" placeholder="Direccìon" required="">
+				<label>Correo</label>
+				<input type="text" class="user" placeholder="Email" required="">
+				<label>Número Celular</label>
+				<input type="text" class="user" placeholder="Número Celular" required="">
+
+				<input class="botones" style="width: 100%;" type="submit" value="Aceptar">
+			</form>
+			<div class="clear"></div>
+		</div>
+	</div>
+
+	<div class="footer">
+		<p>Departamento Académico de Ciencias de la Computación de la <a href="">FISI</a></p>
+	</div>
+
+</body>
+</html>
