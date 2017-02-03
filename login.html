@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <title></title>
+</head>
+<body>
+
+<body>
+
+    <div class="container">
+
+      <div class="form-signin">
+        <h2 class="form-signin-heading" style="text-align: center;">DISPONIBILIDAD DOCENTE</h2>
+        <label for="username" class="sr-only">Código</label>
+        <input type="text" id="username" class="form-control" placeholder="Código" required autofocus>
+        <label for="password" class="sr-only">Contraseña</label>
+        <input type="password" id="password" class="form-control" placeholder="Contraseña" required>
+        <div class="checkbox">
+        <button class="btn btn-lg btn-primary btn-block" type="button" id="submit">Ingresar</button>
+      </div>
+
+      <div id="error_container" class="error hidden">
+          <div class="alert">Verifique sus credenciales</div>
+      </div>
+
+    </div> <!-- /container -->
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        localStorage.setItem("user", null);
+        localStorage.setItem("rol", null);
+        var base_url = "http://54.244.144.252:8080/sidihoWs";
+
+        $("#submit").click(function(e){
+          var username = $("#username").val();
+          var password = $("#password").val();
+          $("#error_container").addClass("hidden");
+
+          var data = {
+            "username"  : username,
+            "password"  : password
+          };
+
+          $.ajax({
+              url: base_url+'/login',
+              type: 'POST',
+              contentType: "application/json",
+              success: function (data) {
+                  console.log(data.user);
+                  localStorage.setItem("user", JSON.stringify(data.user));
+                  var rol = data.user.docente.rol;
+                  localStorage.setItem("rol", rol);
+
+                  if(rol == 1) {
+                    window.location.href = "./editar.html";
+                  }
+                  else {
+                    window.location.href = "./disponibilidad.html";
+                  }
+              },
+              data: JSON.stringify(data),
+              statusCode: {
+                401: function() {
+                  $("#error_container").removeClass("hidden");
+                }
+              }
+          });
+        });
+      });
+    </script>
+
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+  </body>
+</body>
+</html>
