@@ -67,7 +67,8 @@
                   localStorage.setItem("rol", rol);
 
                   if(rol == 1) {
-                    window.location.href = "./editar.html";
+                    //window.location.href = "./editar.html";
+                    alert("Credenciales invalidas");
                   }
                   else {
                     window.location.href = "./disponibilidad.html";
@@ -77,6 +78,7 @@
               statusCode: {
                 401: function() {
                   $("#error_container").removeClass("hidden");
+                  alert("Credenciales invalidas");
                 }
               }
           });

@@ -65,6 +65,45 @@
 			</div>
 	<!-- //header-ends -->
 			<div id="page-wrapper">
+				<div class="select_main" id="footerResume">
+					<h3>Disponibilidad de Catedra</h3>
+					<div id="optionTable">
+						<div class="select_div">
+							<div class="select_left">
+								<label>Escuela:</label>
+								<select class="select_tipo" id="escuela_1">
+									<option>Seleccione opción</option>
+								</select>
+							</div>
+							<div class="select_right">
+								<label>Curso:</label>
+								<select class="select_tipo" id="curso_1">
+									<option>Seleccione opción</option>
+								</select>
+							</div>
+							<div class="clearfix"></div>
+						</div>
+					</div>
+					<div class="col-sm-4" style="float: right;">
+			      		<input type="button" class="botones btnmod" id="addrow" value="Agregar" />
+			    	</div>
+			    	<div class="clearfix"></div>
+				</div>
+
+				<div class="panel-body1">
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Numero</th>
+								<th>Cursos</th>
+								<th>Escuela</th>
+							</tr>
+						</thead>
+						<tbody id="resumeTable">
+
+						</tbody>
+					</table>
+				</div>
 				<div class="graphs">
 					 <div class="xs tabls">
 						<div class="panel panel-warning" style="opacity: 0.88;">
@@ -220,56 +259,7 @@
 					</div>
 				</div>
 
-				<div class="select_main">
-					<h3>Disponibilidad de Catedra</h3>
-					<div id="optionTable">
-						<div class="select_div">
-							<div class="select_left">
-								<label>Escuela:</label>
-								<select class="select_tipo" id="escuela_1">
-									<option>Seleccione opción</option>
-								</select>
-							</div>
-							<div class="select_right">
-								<label>Curso:</label>
-								<select class="select_tipo" id="curso_1">
-									<option>Seleccione opción</option>
-								</select>
-							</div>
-							<div class="clearfix"></div>
-						</div>
-					</div>
-					<div class="col-sm-4" style="float: right;">
-			      		<input type="button" class="botones btnmod" id="addrow" value="Agregar" />
-			    	</div>
-			    	<div class="clearfix"></div>
-				</div>
-
-				<div class="panel-body1">
-					<table class="table">
-						<thead>
-							<tr>
-								<th>Numero</th>
-								<th>Cursos</th>
-								<th>Escuela</th>
-							</tr>
-						</thead>
-						<tbody id="resumeTable">
-
-						</tbody>
-					</table>
-
-
-				<div id="" class="col-md-2" style="padding: 0px; float:left;">
-			   		<h3 style="text-align: center; float: left;">Horas: </h3>
-			   		<div id="current"> </div>
-			   		<div class="clearfix"></div>
-			    </div>
-			    <div class="col-md-4" style="float: right; min-width: 250px;">
-			    	<button class="botones btnmod" type="button" id="submit">Aceptar</a>
-			    	<div class="clearfix"></div>
-			    </div>
-			</div>
+				
 		</div>
 		<!--footer section start-->
 			<footer>
