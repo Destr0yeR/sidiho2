@@ -202,19 +202,19 @@ input.user, input.pass, .register input[type="text"], .register input[type="pass
     background: #1F618D; 
 }
 ::-webkit-input-placeholder {
-    color: #FFF;
+    color: #BBB;
 }
 
 :-moz-placeholder { /* Firefox 18- */
-    color: #FFF;  
+    color: #BBB;  
 }
 
 ::-moz-placeholder {  /* Firefox 19+ */
-    color: #FFF;  
+    color: #BBB;  
 }
 
 :-ms-input-placeholder {  
-    color: #FFF;  
+    color: #BBB;  
 }
 
 .login ul {

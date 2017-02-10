@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Confirmación de datos</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Flat Login & Register Forms Widget Responsive, Login Form Web Template, Flat Pricing Tables, Flat Drop-Downs, Sign-Up Web Templates, Flat Web Templates, Login Sign-up Responsive Web Template, Smartphone Compatible Web Template, Free Web Designs for Nokia, Samsung, LG, Sony Ericsson, Motorola Web Design" />
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+
+    <link rel="stylesheet" href="css/styleConfirmacion.css" type="text/css" media="all" />
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:600italic,400,300,600,700' rel='stylesheet' type='text/css'>
+    <script src="js/jquery-1.10.2.min.js"></script>
+</head>
+<body>
+
+    <h1>Verificar Datos del Profesor</h1>
+
+    <div class="containerConfirmacion">
+
+        <div class="login">
+                    
+            <label>Código</label>
+            <input type="text" class="user" placeholder="Código" disabled id="codigo">
+            <label>Apellido Paterno</label>
+            <input type="text" class="user" placeholder="Apellidos" disabled id="paterno">
+            <label>Nombres</label>
+            <input type="text" class="user" placeholder="Nombres" disabled id="nombres">
+            <label>Horas - Ciclo Anterior</label>
+            <input type="number" class="user" placeholder="Horas" disabled min="0" max="25" id="horas">
+            <label>Correo</label>
+            <input type="text" class="user" placeholder="Email" disabled id="email">
+            <label>Número Celular</label>
+            <input type="text" class="user" placeholder="Número Celular" disabled id="phone">
+
+            <div class="clear"></div>
+
+            <input class="botones" type="button" id="next" value="Continuar">
+            <a class="botones btnmod" href="#modificar" value="Modificar">Modificar</a> 
+            <input class="botones" style="width: 100%" type="button" id="exit" value="Salir">
+        </div>
+        <div class="clear"></div>
+    </div>
+
+    <div id="modificar" class="modalDialog">        
+        <div class="login">
+        <a href="#close" id="close" title="Close" class="close">X</a>
+            
+                <h1 style="text-align: center; margin: 10px auto;">Datos a Modificar</h1>
+                <label>Correo</label>
+                <input type="text" class="user" placeholder="Email" id="new_email">
+                <label>Número Celular</label>
+                <input type="text" class="user" placeholder="Número Celular" id="new_phone">
+
+                <input class="botones" style="width: 100%;" type="button"  id="submit" value="Aceptar">
+            
+            <div class="clear"></div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>Departamento Académico de Ciencias de la Computación de la <a href="">FISI</a></p>
+    </div>
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            if(localStorage.getItem("rol") == null || localStorage.getItem("rol") != 2 || localStorage.getItem("user") == null) {
+              window.location.href = "./login.html"; 
+            }
+            var base_url = "http://54.244.144.252:8080/sidihoWs";
+            var user = JSON.parse(localStorage.getItem("user"));
+
+            $("#next").click(function(e) {
+                window.location.href = "./cursos.html"; 
+            });
+
+            function fillData() {
+                $("#codigo").val(user.docente.codigo);
+                $("#paterno").val(user.docente.lastname);
+                $("#nombres").val(user.docente.firstname);
+                $("#horas").val(user.docente.cant);
+                $("#email").val(user.docente.email);
+                $("#phone").val(user.docente.phone);
+            }
+
+            function loadDocente() {
+                $.ajax({
+                  url: base_url+'/docente/'+JSON.parse(localStorage.getItem("user")).docente.id,
+                  type: 'GET',
+                  success: function (data) {
+                      user["docente"] = data.docente;
+                      localStorage.setItem("user", JSON.stringify(user));
+                      fillData();
+                  },
+                  statusCode: {
+                    401: function() {
+                      $("#error_container").removeClass("hidden");
+                    },
+                    404: function() {
+                      alert("Docente no encontrado");
+                    },
+                    400: function() {
+                      alert("error en datos");
+                    },
+                    500: function() {
+                      alert("error en servidor");
+                    }
+                  }
+              });
+            }
+
+            loadDocente();
+
+            $("#submit").click(function(e) {
+                var docenteData = {
+                    "email" : $("#new_email").val(),
+                    "phone" : $("#new_phone").val()
+                  };
+
+                $.ajax({
+                    url: base_url+'/docente/'+user.docente.id,
+                    type: 'POST',
+                    contentType: "application/json",
+                    success: function (data) {
+                        $("#email").val($("#new_email").val());
+                        $("#phone").val($("#new_phone").val());
+
+                        user.docente.email = $("#new_email").val();
+                        user.docente.phone = $("#new_phone").val();
+
+                        localStorage.setItem("user", JSON.stringify(user));
+                        alert("datos cambiados satisfactoriamente");
+                    },
+                    data: JSON.stringify(docenteData),
+                    statusCode: {
+                        401: function() {
+                            $("#error_container").removeClass("hidden");
+                        },
+                        404: function() {
+                            alert("Docente no encontrado");
+                        },
+                        400: function() {
+                            alert("error en datos de cursos");
+                        },
+                        500: function() {
+                            alert("error en servidor por cursos");
+                        }
+                    }
+                });
+            });
+
+            $("#exit").click(function(e) {
+                window.location.href = "./login.html"; 
+            });
+        });
+    </script>
+</body>
+</html>
